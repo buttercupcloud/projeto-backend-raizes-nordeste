@@ -92,7 +92,9 @@ CREATE DATABASE raizes_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 2. As **tabelas são criadas automaticamente** pelo SQLAlchemy ao iniciar a API (linha `Base.metadata.create_all` em `main.py`). Não há arquivo de migration separado.
 
-3. **Seed manual (dados iniciais para testes):** execute os seguintes comandos no MySQL Workbench ou via terminal após iniciar a API uma vez:
+3. **Seed manual (dados iniciais para testes):**
+
+**Passo 3a** — Insira a unidade e os produtos diretamente no MySQL (não envolvem senha):
 
 ```sql
 -- Inserir uma unidade
@@ -104,19 +106,23 @@ VALUES ('Cuscuz Recheado', 'Cuscuz com queijo e manteiga de garrafa', 15.90, 'Sa
 
 INSERT INTO produto (nome, descricao, preco, categoria, ativo)
 VALUES ('Tapioca Nordestina', 'Tapioca com coco e manteiga', 12.50, 'Salgado', 1);
-
--- Inserir um usuário CLIENTE (senha: 123456 — armazenada como bcrypt hash)
-INSERT INTO usuario (nome, cpf, senha_hash, perfil_role, consentimento, saldo_pontos)
-VALUES ('Maria Silva', '12345678901',
-'$2b$12$KIX9kL2z6lO8K1v2B3q4sO7J5m9p1N4v6R8u0T2w4Y6a8C0e2G4i6', 'CLIENTE', 1, 0);
-
--- Inserir um usuário GERENTE
-INSERT INTO usuario (nome, cpf, senha_hash, perfil_role, consentimento, saldo_pontos)
-VALUES ('João Gerente', '98765432100',
-'$2b$12$KIX9kL2z6lO8K1v2B3q4sO7J5m9p1N4v6R8u0T2w4Y6a8C0e2G4i6', 'GERENTE', 1, 0);
 ```
 
-> **Importante:** para gerar hashes bcrypt reais, use o endpoint `POST /usuarios` da própria API, que aplica o hash automaticamente.
+**Passo 3b** — Crie os usuários via API (o hash bcrypt é gerado automaticamente):
+
+```bash
+# Usuário CLIENTE (usado nos testes T01/T02)
+curl -X POST http://127.0.0.1:8000/usuarios \
+  -H "Content-Type: application/json" \
+  -d '{"nome":"Cliente Teste","cpf":"12312312311","senha":"123","perfil_role":"cliente","consentimento":true}'
+
+# Usuário GERENTE (usado no teste T04)
+curl -X POST http://127.0.0.1:8000/usuarios \
+  -H "Content-Type: application/json" \
+  -d '{"nome":"Gerente Teste","cpf":"98765432100","senha":"123","perfil_role":"GERENTE","consentimento":true}'
+```
+
+> **Importante:** nunca insira usuários diretamente no banco com senha em texto plano ou com hash manual. Use sempre o endpoint `POST /usuarios`, que aplica o bcrypt automaticamente.
 
 ---
 
