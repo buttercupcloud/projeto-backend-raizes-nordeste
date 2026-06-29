@@ -1,0 +1,511 @@
+{
+  "type": "collection.insomnia.rest/5.0",
+  "schema_version": "5.1",
+  "name": "Testes Raizes do Nordeste",
+  "meta": {
+    "id": "wrk_384903eecdce46f7bc125ba2b335ee89",
+    "created": 1782738549016,
+    "modified": 1782738549016,
+    "description": ""
+  },
+  "collection": [
+    {
+      "name": "Auth",
+      "meta": {
+        "id": "fld_698b75fd299f4826ad139f1f1c6575af",
+        "created": 1782738581897,
+        "modified": 1782738581897,
+        "sortKey": -1782738581897,
+        "description": ""
+      },
+      "children": [
+        {
+          "url": "http://127.0.0.1:8000/usuarios",
+          "name": "T01 - Cadastro Válido",
+          "meta": {
+            "id": "req_2bfa0b86bf5343cfb2d2734a7eb7fb61",
+            "created": 1782739528532,
+            "modified": 1782740358091,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782739528532
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \n\t\"nome\": \"Cliente Teste\", \n\t\"cpf\": \"12312312311\", \n\t\"senha\": \"123\", \n\t\"perfil_role\": \"cliente\", \n\t\"consentimento\": true }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/auth/login",
+          "name": "T02 - Login Válido",
+          "meta": {
+            "id": "req_5cda6844babb483298b4b44b70b874a6",
+            "created": 1782740369405,
+            "modified": 1782740451244,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782740369405
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \n\t\"cpf\": \"12312312311\", \n\t\"senha\": \"123\" }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/auth/login",
+          "name": "T03 - Acesso sem Token/Inválido",
+          "meta": {
+            "id": "req_a5adfa697ab4429f8131c3a2c6c4875a",
+            "created": 1782740459917,
+            "modified": 1782740505606,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782740459917
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \n\t\"cpf\": \"12312312311\", \n\t\"senha\": \"senha_errada\" }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/admin/relatorios",
+          "name": "T04 - Acesso sem Permissão",
+          "meta": {
+            "id": "req_b98fdfbbefeb42a4854b4b243b06e864",
+            "created": 1782740520015,
+            "modified": 1782741280979,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782740520015
+          },
+          "method": "GET",
+          "body": {
+            "mimeType": "application/json",
+            "text": ""
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "authentication": {
+            "type": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMxMjMxMjMxMSIsInJvbGUiOiJjbGllbnRlIiwiZXhwIjoxNzgyNzQ3NjM0fQ.W4DVHuSK85uyJ4IFlJPDMH-JBGFU-v3alcLv129VVfE"
+          },
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Validações",
+      "meta": {
+        "id": "fld_a817150f2827487fbe9c3192674c3433",
+        "created": 1782741474565,
+        "modified": 1782741474565,
+        "sortKey": -1782741474565,
+        "description": ""
+      },
+      "children": [
+        {
+          "url": "http://127.0.0.1:8000/pedidos",
+          "name": "T05 - Campo Obrigatório Ausente",
+          "meta": {
+            "id": "req_1bb37f9e558b40af8975332f4e1551bb",
+            "created": 1782741480639,
+            "modified": 1782741533247,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782741480639
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_usuario\": 1, \n \"id_unidade\": 1, \n \"itens\": [ { \"id_produto\": 1, \"quantidade\": 2 } ] \n}"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/pedidos",
+          "name": "T06 - Formato Inválido",
+          "meta": {
+            "id": "req_c6066b399a884de28c7560b43a99a551",
+            "created": 1782741590104,
+            "modified": 1782741698640,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782741590104
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_usuario\": \"texto\", \n \"id_unidade\": 1, \n \"canalPedido\": \"TOTEM\", \n \"itens\": [ { \"id_produto\": 1, \"quantidade\": 2 } ]"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedidos",
+      "meta": {
+        "id": "fld_e76db7382d084ca8b12426a01ada9f41",
+        "created": 1782741738726,
+        "modified": 1782741738726,
+        "sortKey": -1782741738726,
+        "description": ""
+      },
+      "children": [
+        {
+          "url": "http://127.0.0.1:8000/pedidos",
+          "name": "T07 - Pedido Válido via TOTEM",
+          "meta": {
+            "id": "req_25734eedc5cf49cdb45864cfc8799e21",
+            "created": 1782741743221,
+            "modified": 1782741849471,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782741743221
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_usuario\": 1, \n \"id_unidade\": 1, \n \"canalPedido\": \"TOTEM\", \n \"itens\": [ { \"id_produto\": 1, \"quantidade\": 2 } ] }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/pedidos",
+          "name": "T08 - Pedido Válido via APP",
+          "meta": {
+            "id": "req_92538c45a33f4da1bb508bc0f0f48707",
+            "created": 1782741907119,
+            "modified": 1782741947675,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782741907119
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_usuario\": 1, \n \"id_unidade\": 1, \n \"canalPedido\": \"APP\", \n \"itens\": [ { \"id_produto\": 1, \"quantidade\": 1 } ] }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/pedidos",
+          "name": "T09 - Produto Inexistente",
+          "meta": {
+            "id": "req_b82b589653f64a8ab0e002de86095caa",
+            "created": 1782741969133,
+            "modified": 1782742344538,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782741969133
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_usuario\": 1, \n \"id_unidade\": 1, \n \"canalPedido\": \"TOTEM\", \n \"itens\": [ { \"id_produto\": 9999, \"quantidade\": 1 } ] }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/pedidos",
+          "name": "T10 - Regra Equivalente / Canal Inválido",
+          "meta": {
+            "id": "req_2b77595b88c84279b71ef1f47102bb03",
+            "created": 1782742348721,
+            "modified": 1782742396208,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782742348721
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_usuario\": 1, \n \"id_unidade\": 1, \n \"canalPedido\": \"IFOOD\", \n \"itens\": [ { \"id_produto\": 1, \"quantidade\": 1 } ] }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pagamentos",
+      "meta": {
+        "id": "fld_02c55c9794994d83b583277b8d3119d8",
+        "created": 1782742428482,
+        "modified": 1782742428482,
+        "sortKey": -1782742428482,
+        "description": ""
+      },
+      "children": [
+        {
+          "url": "http://127.0.0.1:8000/pagamentos/mock",
+          "name": "T11 - Pagamento Mock PIX",
+          "meta": {
+            "id": "req_c89b172593fe48288d6751052800bbd3",
+            "created": 1782742432165,
+            "modified": 1782742549782,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782742432165
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_pedido\": 2, \n \"forma_pagamento\": \"PIX\" }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/pagamentos/mock",
+          "name": "T12 - Pagamento Mock CARTAO",
+          "meta": {
+            "id": "req_a079700bbf694ddfbf97045a6f4d8272",
+            "created": 1782742553927,
+            "modified": 1782742648817,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782742553927
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_pedido\": 4, \n \"forma_pagamento\": \"CARTAO_CREDITO\" }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8000/pagamentos/mock",
+          "name": "T13 - Pagamento Recusado / Duplicado",
+          "meta": {
+            "id": "req_4aa817e0e47b466d953455332f39566f",
+            "created": 1782742666098,
+            "modified": 1782742704250,
+            "isPrivate": false,
+            "description": "",
+            "sortKey": -1782742666098
+          },
+          "method": "POST",
+          "body": {
+            "mimeType": "application/json",
+            "text": "{ \"id_pedido\": 1, \n \"forma_pagamento\": \"PIX\" }"
+          },
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "settings": {
+            "renderRequestBody": true,
+            "encodeUrl": true,
+            "followRedirects": "global",
+            "cookies": {
+              "send": true,
+              "store": true
+            },
+            "rebuildPath": true
+          }
+        }
+      ]
+    }
+  ],
+  "cookieJar": {
+    "name": "Default Jar",
+    "meta": {
+      "id": "jar_c5da58ae13c64f7f3329806e2cf6308836da6f6f",
+      "created": 1782738549027,
+      "modified": 1782738549027
+    }
+  },
+  "environments": {
+    "name": "Base Environment",
+    "meta": {
+      "id": "env_c5da58ae13c64f7f3329806e2cf6308836da6f6f",
+      "created": 1782738549022,
+      "modified": 1782738549022,
+      "isPrivate": false
+    }
+  }
+}
